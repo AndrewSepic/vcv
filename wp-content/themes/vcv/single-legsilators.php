@@ -98,7 +98,25 @@
 				</address>
 		</header>
         
-       <? /* bills */	   	   $terms = get_terms( array( 'taxonomy' => 'scorecard', 'hide_empty' => true) );	   	   $years=array();	   foreach($terms as $t ){		   $y= $t->name;		   array_push($years, $y);	   }	   	   rsort($years,SORT_NUMERIC);	   	   echo "<nav class='tabs'>";	   foreach($years as $y ){			$active='';			if($y==$year){			   $active='active';		   }		   		   echo "<a href='' data-year='$y' class='tab $active'>".$y." Bills</a>";	   }	   echo "</nav>";	   		foreach($terms as $t ){			$y= $t->name;						 getSingleBills(get_the_id(), $y, $year);;		}		  	   
+       <? /* bills */	   	   
+	   $terms = get_terms( array( 'taxonomy' => 'scorecard', 'hide_empty' => true) );	   	   
+	   $years=array();	   
+	   foreach($terms as $t ){		   
+			$y= $t->name;		   
+			array_push($years, $y);	   
+		}	   	   
+		rsort($years,SORT_NUMERIC);	   	   
+		echo "<nav class='tabs'>";	   
+		foreach($years as $y ){			
+			$active='';			
+			if($y==$year){	$active='active'; }		   		   
+			echo "<a href='' data-year='$y' class='tab $active'>".$y." Bills</a>";	  
+		}	   
+		echo "</nav>";	   		
+		foreach($terms as $t ){			
+			$y= $t->name;						 
+			getSingleBills(get_the_id(), $y, $year);;		
+		}		  	   
         ?>
      			<div id="key" class='clearfix'>
      				<div id="pro"><img src='<? echo get_template_directory_uri(); ?>/img/thumbs_up_big.gif' />
